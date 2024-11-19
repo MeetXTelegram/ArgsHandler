@@ -12,8 +12,6 @@ void ah::Args::processWithCmakeStyle() {
         else if (std::regex_search(iter, matches, patternWithoutBrackets))
             this->argsMap_[matches[1].str()] = matches[2].str();
         else
-#ifndef NDEBUG
-            std::cout << "Invalid argument: \"" << iter << "\"" << std::endl;
-#endif
+            spdlog::get("ArgsHandler")->log(spdlog::level::debug, "Invalid argument: \"{}\"", iter);
     }
 }

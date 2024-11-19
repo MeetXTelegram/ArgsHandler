@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <iostream>
 #include <mutex>
 #include <optional>
@@ -8,15 +7,15 @@
 #include <unordered_map>
 #include <vector>
 
+#include <spdlog/spdlog.h>
+
 namespace ah {
     class Args {
     public:
         Args(int argc, char* argv[]) : argsQuantity_(static_cast<std::size_t>(argc)), rawArgsArray_(argv) {
             for (std::size_t i = 0; i < this->argsQuantity_; ++i) {
                 if (argv[i]) {
-#ifndef NDEBUG
-                    std::cout << "New element added: \"" << argv[i] << "\"" << std::endl;
-#endif
+                    spdlog::get("ArgsHandler")->log(spdlog::level::trace, "New element added: \"{}\"", argv[i]);
                     this->argsArray_.emplace_back(argv[i]);
                 }
             }
