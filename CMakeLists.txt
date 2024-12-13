@@ -12,7 +12,7 @@ message(STATUS "Library will be installed in ${CMAKE_INSTALL_LIBDIR}; header fil
 
 include_directories(include)
 
-add_library(ArgsHandler SHARED
+add_library(ArgsHandler STATIC
     include/Args.hpp
     src/getArg.cpp
     include/Exception.hpp
